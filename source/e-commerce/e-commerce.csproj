@@ -5,4 +5,11 @@
     <RootNamespace>e_commerce</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+
 </Project>

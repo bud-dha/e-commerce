@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace e_Comerce.Controllers
+namespace e_commerce.Controllers
 {
-    public class FeedbackController : Controller
+    public class AccountController : Controller
     {
-        public IActionResult Index() // feedback
+        public IActionResult Index()
         {
             return View();
         }

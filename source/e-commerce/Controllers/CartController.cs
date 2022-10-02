@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace e_Comerce.Controllers
+namespace e_commerce.Controllers
 {
-    public class ProfileController : Controller
+    public class CartController : Controller
     {
         public IActionResult Index()
         {

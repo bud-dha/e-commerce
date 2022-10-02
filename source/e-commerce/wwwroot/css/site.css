@@ -1,11 +1,20 @@
-﻿* {
+﻿
+* {
     margin: 0;
     padding: 0;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
-    background: silver;  
-    font-family: 'Montseratt' , sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    background: #fff;
+    color: #000000;
 }
 
 header {
@@ -15,13 +24,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #0026ff;
-    border-bottom: 2px solid #000;
+    background: #008B8B;    
 }
 
     header.logo {
-        font-weight: 900;        
-        font-size: 300px;
+        font-weight: 900;                
     }
 
     header nav a:hover {
@@ -33,5 +40,4 @@ main {
     padding: 15px 10%;
     margin: 50px 0;
 }
-
 
