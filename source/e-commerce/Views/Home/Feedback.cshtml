@@ -1,5 +1,28 @@
 ﻿@{
-    ViewData["Title"] = "Главная страница";
+    ViewData["Title"] = "Обратная связь";
 }
 
-<h1>Обратная связь</h1>
+<div class="feedback_form">
+
+    <div class="contact_form_title"><h1>Обратная связь</h1></div>
+
+    <form action="#" id="feedback_form">
+
+        <div class="feedback_form_inputs">
+            <input type="text" id="feedback_form_name"  class="feedback_form_name input_field"  placeholder="Ваше имя"   required="required" data-error="Данное поле обязательно к заполнению.">
+            <input type="text" id="feedback_form_email" class="feedback_form_email input_field" placeholder="Ваша почта" required="required" data-error="Данное поле обязательно к заполнению.">
+            <input type="text" id="feedback_form_phone" class="feedback_form_phone input_field" placeholder="Ваш номер телефона">
+        </div>
+
+        <div class="feedback_form_text">
+            <textarea id="feedback_form_message" class="text_field feedback_form_message" name="message" rows="4" placeholder="Сообщение" required="required" data-error="Пожалуйста, напишите сообщение."></textarea>
+        </div>
+
+        <div class="feeback_form_button">
+            <button type="submit" class="button feedback_submit_button">Отправить</button>
+        </div>
+
+    </form>
+
+    <div class="panel"></div>
+</div>
