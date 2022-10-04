@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace e_Comerce.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         public ActionResult Index() // /home
