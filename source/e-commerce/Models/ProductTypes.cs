@@ -15,6 +15,6 @@ namespace e_commerce.Models
         /// <summary>
         /// Тип продукта.
         /// </summary>
-        public string ProductType { get; set; }
+        public string ProductType { get; set; } = "Пельмени";
     }
 }
