@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace e_commerce.Models
 {
@@ -15,6 +16,8 @@ namespace e_commerce.Models
         /// <summary>
         /// Тип продукта.
         /// </summary>
+        [Required]
+        [Display(Name = "Тип продукта")]
         public string ProductType { get; set; } = "Пельмени";
     }
 }

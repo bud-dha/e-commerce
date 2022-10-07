@@ -1,18 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
+using e_commerce.Data;
 using e_commerce.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace e_commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductTypesController : Controller
     {
+        private ApplicationContext _db;
+
+        public ProductTypesController(ApplicationContext db)
+        {
+            _db = db;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_db.ProductTypes.ToList());
         }
 
         // Create Get action Method
@@ -28,8 +36,8 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_db.ProductTypes.Add(productTypes);
-                //await _db.SaveChangesAsync();
+                _db.ProductTypes.Add(productTypes);
+                await _db.SaveChangesAsync();
                 TempData["save"] = "Product type has been saved";
                 return RedirectToAction(nameof(Index));
             }
