@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProductTypes>
+﻿@using e_commerce.Models;
+@model IEnumerable<ProductTypes>
 
 @{
     ViewData["Title"] = "Тип продукта";
@@ -19,16 +20,19 @@
     <table class="table table-striped border">
         <tr class="table-info">
             <th>
-                @Html.DisplayNameFor(expression: c=>c.ProductType)
+                @Html.DisplayNameFor(expression: c => c.ProductType)
             </th>
             <th></th>
+            <th></th>
         </tr>
-        @foreach (var item in Model)
-         { 
-            <tr>
-                <td>@item.ProductType</td>
-                <td>Изменить | Инфо. | Удалить</td>
-            </tr>
+         @foreach (var item in Model)
+         {
+          <tr>
+              <td>@item.ProductType</td>
+              <td>
+                <partial name="_ButtonPartial" model="@item.Id">
+              </td>
+          </tr>
          }
     </table>
 </div>
