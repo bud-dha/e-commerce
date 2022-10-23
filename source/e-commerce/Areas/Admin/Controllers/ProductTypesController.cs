@@ -24,6 +24,7 @@ namespace e_commerce.Areas.Admin.Controllers
         }
 
         #region Создание типа продукта.
+
         //Create Get action Method
         public ActionResult Create()
         {
@@ -39,7 +40,7 @@ namespace e_commerce.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Add(productTypes);
                 await _db.SaveChangesAsync();
-                TempData["save"] = "Product type has been saved";
+                //TempData["save"] = "Product type has been saved";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -48,6 +49,7 @@ namespace e_commerce.Areas.Admin.Controllers
         #endregion
 
         #region Редактирование типа продукта.
+
         //Edit Get action Method
         public ActionResult Edit(int? id)
         {
@@ -82,6 +84,7 @@ namespace e_commerce.Areas.Admin.Controllers
         #endregion
 
         #region Получение информации о типе продукта.
+
         //Details Get action Method
         public ActionResult Details(int? id)
         {
@@ -109,6 +112,7 @@ namespace e_commerce.Areas.Admin.Controllers
         #endregion
 
         #region Удаление типа продукта
+
         //Delete Get action Method
         public ActionResult Delete(int? id)
         {

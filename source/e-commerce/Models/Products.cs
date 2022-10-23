@@ -21,12 +21,14 @@ namespace e_commerce.Models
         /// Название продукта.
         /// </summary>
         [Required]
+        [Display(Name = "Название")]
         public string Name { get; set; }
 
         /// <summary>
         /// Цена продукта.
         /// </summary>
         [Required]
+        [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
         /// <summary>
@@ -37,21 +39,21 @@ namespace e_commerce.Models
         /// <summary>
         /// Цвет продукта.
         /// </summary>
-        [Display(Name = "Product Color")]
+        [Display(Name = "Цвет")]
         public string ProductColor { get; set; }
 
         /// <summary>
         /// Наличие продукта.
         /// </summary>
         [Required]
-        [Display(Name = "Available")]
+        [Display(Name = "Наличие")]
         public bool IsAvailable { get; set; }
 
         /// <summary>
         /// Id типа продукта.
-        /// </summary>      
-        [Display(Name = "Product Type")]
+        /// </summary>              
         [Required]
+        [Display(Name = "Тип продукта")]
         public int ProductTypeId { get; set; }
 
         [ForeignKey("ProductTypeId")]
