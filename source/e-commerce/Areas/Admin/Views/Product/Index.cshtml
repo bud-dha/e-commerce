@@ -1,0 +1,54 @@
+﻿@using e_commerce.Models;
+@model IEnumerable<Products>
+
+@{
+    ViewData["Title"] = "Продукт";
+}
+
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Список продуктов</h2>
+    </div>
+    <div class="col-6 text-info-rigth">
+        <a asp-action="Create" class="btn btn-info">&nbsp; Добавить новый продукт</a>
+    </div>
+</div>
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(expression: c => c.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.ProductTypeId)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.ProductColor</td>
+                <td>@item.IsAvailable</td>
+                <td>@item.ProductTypes.ProductType</td>
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id">
+                </td>
+            </tr>
+        }
+    </table>
+</div>

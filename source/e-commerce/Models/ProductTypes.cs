@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace e_commerce.Models
 {
+    /// <summary>
+    /// Класс типа продукта.
+    /// </summary>
     public class ProductTypes
     {
         /// <summary>

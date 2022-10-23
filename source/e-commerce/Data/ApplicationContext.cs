@@ -11,6 +11,8 @@ namespace e_commerce.Data
     {
         public DbSet<ProductTypes> ProductTypes { get; set; } = null!;
 
+        public DbSet<Products> Products { get; set; } = null!;
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             Database.EnsureCreated();
