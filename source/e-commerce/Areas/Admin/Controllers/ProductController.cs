@@ -1,12 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using e_commerce.Data;
 using e_commerce.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -63,6 +61,57 @@ namespace e_commerce.Areas.Admin.Controllers
             }
 
             return View(products);
+        }
+        #endregion
+
+        #region Редактирование продукта.
+
+        //Edit Get action Method
+        public ActionResult Edit()
+        {            
+            return View();
+        }
+
+        //Edit Post action Method
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Edit(Products products)
+        {            
+            return View();
+        }
+        #endregion
+
+        #region Получение информации о продукте.
+
+        //Details Get action Method
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+        //Details Post action Method
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Details(Products products)
+        {
+            return View();
+        }
+        #endregion
+
+        #region Удаление продукта.
+
+        //Delete Get action Method
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        //Delete Post action Method
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Delete(Products products)
+        {
+            return View();
         }
         #endregion
     }
