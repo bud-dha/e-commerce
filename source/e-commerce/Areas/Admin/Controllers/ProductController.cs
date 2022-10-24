@@ -24,8 +24,7 @@ namespace e_commerce.Areas.Admin.Controllers
         }
 
         public IActionResult Index()
-        {
-            ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");            
+        {                      
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
         }
 
@@ -34,6 +33,7 @@ namespace e_commerce.Areas.Admin.Controllers
         //Create Get action Method
         public IActionResult Create()
         {
+            ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace e_commerce.Areas.Admin.Controllers
 
                 if (image == null)
                 {
-                    products.Image = "Images/noimage.jpg";
+                    products.Image = "Images/noimage.png";
                 }
                 _db.Products.Add(products);
                 await _db.SaveChangesAsync();
@@ -67,17 +67,49 @@ namespace e_commerce.Areas.Admin.Controllers
         #region Редактирование продукта.
 
         //Edit Get action Method
-        public ActionResult Edit()
-        {            
-            return View();
+        public IActionResult Edit(int? id)
+        {
+            ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
+            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         //Edit Post action Method
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit(Products products)
-        {            
-            return View();
+        public async Task<IActionResult> Edit(Products products, IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    var name = Path.Combine(_he.WebRootPath + "Images", Path.GetFileName(image.FileName));
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    products.Image = "Images/" + image.FileName;
+                }
+
+                if (image == null)
+                {
+                    products.Image = "Images/noimage.png";
+                }
+                _db.Products.Update(products);
+                await _db.SaveChangesAsync();
+                //TempData["save"] = "Product type has been saved";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(products);
         }
         #endregion
 
