@@ -6,10 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\noimage.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Identity\Pages\" />
-    <Folder Include="wwwroot\Images\" />
-    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\noimage.jpg" />
   </ItemGroup>
 
   <ItemGroup>

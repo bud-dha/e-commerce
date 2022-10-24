@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using e_commerce.Models;
-using System.Collections.Generic;
+﻿using e_commerce.Models;
 using Microsoft.EntityFrameworkCore;
 
 
