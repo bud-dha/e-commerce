@@ -28,6 +28,18 @@ namespace e_commerce.Areas.Admin.Controllers
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
         }
 
+        //POST Index action method
+        [HttpPost]
+        public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
+        {
+            var products = _db.Products.Include(c => c.ProductTypes).Where(c => c.Price >= lowAmount && c.Price <= largeAmount).ToList();
+            if (lowAmount == null || largeAmount == null)
+            {
+                products = _db.Products.Include(c => c.ProductTypes).ToList();
+            }
+            return View(products);
+        }
+
         #region Создание продукта
 
         //Create Get action Method
@@ -39,28 +51,37 @@ namespace e_commerce.Areas.Admin.Controllers
 
         //Create Get action Method
         [HttpPost]
-        public async Task<IActionResult> Create(Products products, IFormFile image)
+        public async Task<IActionResult> Create(Products product, IFormFile image)
         {
+            var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
+
+            if (searchProduct != null)
+            {
+                ViewBag.message = "Этот продукт уже существует";
+                ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
+                return View(product);
+            }
+
             if (ModelState.IsValid)
             {
                 if (image != null)
                 {
                     var name = Path.Combine(_he.WebRootPath + "Images", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                    products.Image = "Images/" + image.FileName;
+                    product.Image = "Images/" + image.FileName;
                 }
 
                 if (image == null)
                 {
-                    products.Image = "Images/noimage.png";
+                    product.Image = "Images/noimage.png";
                 }
-                _db.Products.Add(products);
+                _db.Products.Add(product);
                 await _db.SaveChangesAsync();
                 //TempData["save"] = "Product type has been saved";
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(products);
+            return View(product);
         }
         #endregion
 
@@ -116,9 +137,20 @@ namespace e_commerce.Areas.Admin.Controllers
         #region Получение информации о продукте.
 
         //Details Get action Method
-        public ActionResult Details()
+        public ActionResult Details(int? id)
         {
-            return View();
+            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         //Details Post action Method
@@ -133,17 +165,43 @@ namespace e_commerce.Areas.Admin.Controllers
         #region Удаление продукта.
 
         //Delete Get action Method
-        public ActionResult Delete()
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _db.Products.Include(c => c.ProductTypes).Where(c => c.Id == id).FirstOrDefault();
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
         }
 
         //Delete Post action Method
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Delete(Products products)
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _db.Products.Include(c => c.ProductTypes).Where(c => c.Id == id).FirstOrDefault();
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
         #endregion
     }
