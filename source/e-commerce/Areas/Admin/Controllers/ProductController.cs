@@ -23,6 +23,8 @@ namespace e_commerce.Areas.Admin.Controllers
             _he = he;
         }
 
+        #region Возврат
+
         public IActionResult Index()
         {                      
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
@@ -33,19 +35,22 @@ namespace e_commerce.Areas.Admin.Controllers
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
         {
             var products = _db.Products.Include(c => c.ProductTypes).Where(c => c.Price >= lowAmount && c.Price <= largeAmount).ToList();
-            if (lowAmount == null || largeAmount == null)
-            {
-                products = _db.Products.Include(c => c.ProductTypes).ToList();
-            }
+
+            if (lowAmount == null || largeAmount == null)            
+                products = _db.Products.Include(c => c.ProductTypes).ToList();            
+
             return View(products);
         }
+
+        #endregion
 
         #region Создание продукта
 
         //Create Get action Method
-        public IActionResult Create()
+        public ActionResult Create()
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
+
             return View();
         }
 
@@ -75,9 +80,10 @@ namespace e_commerce.Areas.Admin.Controllers
                 {
                     product.Image = "Images/noimage.png";
                 }
+
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
-                //TempData["save"] = "Product type has been saved";
+                //TempData["save"] = "Продукт сохренен";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -88,20 +94,16 @@ namespace e_commerce.Areas.Admin.Controllers
         #region Редактирование продукта.
 
         //Edit Get action Method
-        public IActionResult Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
             var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
 
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null)            
+                return NotFound();            
             
-            if (product == null)
-            {
-                return NotFound();
-            }
+            if (product == null)            
+                return NotFound();            
 
             return View(product);
         }
@@ -124,9 +126,10 @@ namespace e_commerce.Areas.Admin.Controllers
                 {
                     products.Image = "Images/noimage.png";
                 }
+
                 _db.Products.Update(products);
                 await _db.SaveChangesAsync();
-                //TempData["save"] = "Product type has been saved";
+                //TempData["save"] = "Продукт сохренен";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -141,25 +144,15 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
 
-            if (id == null)
-            {
-                return NotFound();
-            }
-            if (product == null)
-            {
-                return NotFound();
-            }
+            if (id == null)            
+                return NotFound();         
+            
+            if (product == null)            
+                return NotFound();            
 
             return View(product);
         }
 
-        //Details Post action Method
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Details(Products products)
-        {
-            return View();
-        }
         #endregion
 
         #region Удаление продукта.
@@ -167,17 +160,14 @@ namespace e_commerce.Areas.Admin.Controllers
         //Delete Get action Method
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var product = _db.Products.Include(c => c.ProductTypes).Where(c => c.Id == id).FirstOrDefault();
 
-            if (product == null)
-            {
-                return NotFound();
-            }
+            if (id == null)            
+                return NotFound();            
+
+            if (product == null)            
+                return NotFound();  
+            
             return View(product);
         }
 
@@ -186,21 +176,16 @@ namespace e_commerce.Areas.Admin.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var product = _db.Products.FirstOrDefault(c => c.Id == id);
 
-            var product = _db.Products.Include(c => c.ProductTypes).Where(c => c.Id == id).FirstOrDefault();
-
-            if (product == null)
-            {
-                return NotFound();
-            }
+            if (id == null)            
+                return NotFound();            
+            
+            if (product == null)            
+                return NotFound();            
 
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
         }
         #endregion

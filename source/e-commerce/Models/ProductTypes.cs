@@ -17,6 +17,6 @@ namespace e_commerce.Models
         /// </summary>
         [Required]
         [Display(Name = "Тип продукта")]
-        public string ProductType { get; set; } = "Пельмени";
+        public string ProductType { get; set; }
     }
 }

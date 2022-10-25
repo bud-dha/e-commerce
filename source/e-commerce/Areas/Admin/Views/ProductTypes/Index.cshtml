@@ -8,16 +8,22 @@
 
 <br />
 <br />
+
 <div class="row">
+
     <div class="col-6">
         <h2 class="text-info">Список типов продуктов</h2>
     </div>
     <div class="col-6 text-info-rigth">
         <a asp-action="Create" class="btn btn-info">&nbsp; Новый тип продукта</a>
     </div>
+
 </div>
+
 <div>
+
     <table class="table table-striped border">
+
         <tr class="table-info">
             <th>
                 @Html.DisplayNameFor(expression: c => c.ProductType)
@@ -25,6 +31,7 @@
             <th></th>
             <th></th>
         </tr>
+
          @foreach (var item in Model)
          {
           <tr>
@@ -34,5 +41,7 @@
               </td>
           </tr>
          }
+
     </table>
+
 </div>

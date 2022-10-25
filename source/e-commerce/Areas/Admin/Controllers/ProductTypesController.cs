@@ -16,10 +16,14 @@ namespace e_commerce.Areas.Admin.Controllers
             _db = db;
         }
 
+        #region Возврат
+
         public IActionResult Index()
         {
             return View(_db.ProductTypes.ToList());
         }
+
+        #endregion
 
         #region Создание типа продукта.
 
@@ -38,12 +42,13 @@ namespace e_commerce.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Add(productTypes);
                 await _db.SaveChangesAsync();
-                //TempData["save"] = "Product type has been saved";
+                //TempData["save"] = "Тип продукта сохранен";
                 return RedirectToAction(nameof(Index));
             }
 
             return View(productTypes);
         }
+
         #endregion
 
         #region Редактирование типа продукта.
@@ -51,17 +56,14 @@ namespace e_commerce.Areas.Admin.Controllers
         //Edit Get action Method
         public ActionResult Edit(int? id)
         {
-            if (id==null)
-            {
-                return NotFound();
-            }
-
             var productType = _db.ProductTypes.Find(id);
 
-            if (productType==null)
-            {
-                return NotFound();
-            }
+            if (id==null)            
+                return NotFound();                  
+
+            if (productType==null)            
+                return NotFound();            
+
             return View(productType);
         }
 
@@ -74,11 +76,13 @@ namespace e_commerce.Areas.Admin.Controllers
             {
                 _db.Update(productTypes);
                 await _db.SaveChangesAsync();
-                TempData["save"] = "Product type has been saved";
+                //TempData["save"] = "Тип продукта был сохранен";
                 return RedirectToAction(nameof(Index));
             }
+
             return View(productTypes);
         }
+
         #endregion
 
         #region Получение информации о типе продукта.
@@ -86,17 +90,14 @@ namespace e_commerce.Areas.Admin.Controllers
         //Details Get action Method
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var productType = _db.ProductTypes.Find(id);
 
-            if (productType == null)
-            {
-                return NotFound();
-            }
+            if (id == null)            
+                return NotFound();                        
+
+            if (productType == null)            
+                return NotFound();      
+            
             return View(productType);
         }
 
@@ -107,6 +108,7 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             return RedirectToAction(nameof(Index));
         }
+
         #endregion
 
         #region Удаление типа продукта
@@ -114,17 +116,14 @@ namespace e_commerce.Areas.Admin.Controllers
         //Delete Get action Method
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var productType = _db.ProductTypes.Find(id);
 
-            if (productType == null)
-            {
-                return NotFound();
-            }
+            if (id == null)            
+                return NotFound();                        
+
+            if (productType == null)            
+                return NotFound();     
+            
             return View(productType);
         }
 
@@ -147,13 +146,13 @@ namespace e_commerce.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _db.ProductTypes.Remove(productType);
-                await _db.SaveChangesAsync();
-                TempData["save"] = "Product type has been saved";
+                await _db.SaveChangesAsync();                
                 return RedirectToAction(nameof(Index));
             }
 
             return View(productTypes);
         }
+
         #endregion
     }
 }

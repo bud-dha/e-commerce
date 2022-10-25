@@ -2,15 +2,20 @@
 @{
     ViewData["Title"] = "Изменить";
 }
+
 <br />
 
 <h2 class="text-info">Изменить продукт</h2>
-<form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <div class="p-4 rounded border row">
-        <div asp-validation-summary="ModelOnly" class="text-danger">
 
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+
+    <div class="p-4 rounded border row">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
+
         <div class="col-8">
+
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="Name"></label>
@@ -21,6 +26,7 @@
                 </div>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="Price"></label>
@@ -30,6 +36,7 @@
                 </div>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="Image"></label>
@@ -39,6 +46,7 @@
                 </div>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
+
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ProductColor"></label>
@@ -48,16 +56,17 @@
                 </div>
                 <span asp-validation-for="ProductColor" class="text-danger"></span>
             </div>
+
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="ProductTypeId"></label>
                 </div>
                 <div class="col-8">
-                    <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>
-                    @*<input asp-for="ProductTypeId" class="form-control"/>*@
+                    <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>                    
                 </div>
                 <span asp-validation-for="ProductTypeId" class="text-danger"></span>
             </div>
+
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="IsAvailable"></label>
@@ -67,11 +76,14 @@
                 </div>
                 <span asp-validation-for="IsAvailable" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Обновить" />
                 <a asp-action="Index" class="btn btn-success">"Вернуться к списку"</a>
             </div>
+
         </div>
+
         <div class="col-1"></div>
         <div class="col-3">
             <img src="~/@Model.Image" width="100%" style="border-radius: 5px;border: 1px solid #efefef"/>

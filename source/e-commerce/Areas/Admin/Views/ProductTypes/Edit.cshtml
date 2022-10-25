@@ -4,9 +4,13 @@
 }
 
 <br />
+
 <h2 class="text-info" Изменить тип продукта></h2>
+
 <form asp-action="Edit" method="post">
+
     <div class="p-4 rounded border">
+
         <input type ="hidden" asp-for="Id"/>
         <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
@@ -17,9 +21,12 @@
             <input asp-for="ProductType" class="form-control" />
         </div>
         <span asp-validation-for="ProductType" class="text-danger"></span>
+
     </div>
+
     <div>
         <input type="submit" class="btn btn-primary" value="Обновить" />
         <a asp-action="Index" class="btn btn-success">Вернуться к списку</a>
     </div>
+
 </form>
