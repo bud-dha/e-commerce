@@ -30,6 +30,7 @@ namespace e_commerce.Areas.Admin.Controllers
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
         }
 
+        /* Сортировка
         //POST Index action method
         [HttpPost]
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
@@ -41,6 +42,7 @@ namespace e_commerce.Areas.Admin.Controllers
 
             return View(products);
         }
+        */
 
         #endregion
 
