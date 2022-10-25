@@ -30,6 +30,7 @@ namespace e_commerce.Models
         /// <summary>
         /// Фото продукта.
         /// </summary>
+        [Display(Name = "Картинка")]
         public string Image { get; set; }
 
         /// <summary>
