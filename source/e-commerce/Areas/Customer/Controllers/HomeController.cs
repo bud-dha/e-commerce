@@ -3,7 +3,6 @@ using System.Linq;
 using e_commerce.Data;
 using e_commerce.Models;
 using System.Diagnostics;
-using e_commerce.Utility;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -57,6 +56,7 @@ namespace e_Comerce.Controllers
             return View(product);
         }
 
+        /*
         //POST product detail acation method
         [HttpPost]
         [ActionName("Detail")]
@@ -79,18 +79,7 @@ namespace e_Comerce.Controllers
             HttpContext.Session.Set("products", products);
             return RedirectToAction(nameof(Index));
         }
+        */
         #endregion
-
-
-        public ActionResult List() // /home/list
-        {
-            return View();
-        }
-
-        public ActionResult Feedback() // /home/feedback
-        {
-            return View();
-        }
-
     }
 }

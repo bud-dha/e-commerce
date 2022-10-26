@@ -78,10 +78,8 @@ namespace e_commerce.Areas.Admin.Controllers
                     product.Image = "Images/" + image.FileName;
                 }
 
-                if (image == null)
-                {
-                    product.Image = "Images/noimage.png";
-                }
+                if (image == null)                
+                    product.Image = "Images/noimage.png";               
 
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
@@ -124,10 +122,8 @@ namespace e_commerce.Areas.Admin.Controllers
                     products.Image = "Images/" + image.FileName;
                 }
 
-                if (image == null)
-                {
-                    products.Image = "Images/noimage.png";
-                }
+                if (image == null)                
+                    products.Image = "Images/noimage.png";                
 
                 _db.Products.Update(products);
                 await _db.SaveChangesAsync();

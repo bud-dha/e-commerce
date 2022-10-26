@@ -2,7 +2,7 @@
 @model IEnumerable<ProductTypes>
 
 @{
-    ViewData["Title"] = "Тип продукта";
+    ViewData["Title"] = "Категория";
 }
 
 
@@ -12,10 +12,10 @@
 <div class="row">
 
     <div class="col-6">
-        <h2 class="text-info">Список типов продуктов</h2>
+        <h2 class="text-info">Список категорий</h2>
     </div>
     <div class="col-6 text-info-rigth">
-        <a asp-action="Create" class="btn btn-info">&nbsp; Новый тип продукта</a>
+        <a asp-action="Create" class="btn btn-info">&nbsp; Новая категория</a>
     </div>
 
 </div>
@@ -37,7 +37,9 @@
           <tr>
               <td>@item.ProductType</td>
               <td>
-                <partial name="_ButtonPartial" model="@item.Id">
+                  <a asp-action="Edit"    asp-controller="ProductType" class="btn btn-primary" asp-route-id="@item.Id">Редактировать</a>
+                  <a asp-action="Details" asp-controller="ProductType" class="btn btn-success" asp-route-id="@item.Id">Инфо.</a>
+                  <a asp-action="Delete"  asp-controller="ProductType" class="btn btn-danger"  asp-route-id="@item.Id">Удалить</a>
               </td>
           </tr>
          }

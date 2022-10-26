@@ -9,6 +9,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/Upload/feedback_style.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="icon" type="image/png" href="/Icons/favicon(16).ico" sizes="16x16">
     <link rel="icon" type="image/png" href="/Icons/favicon(32).ico" sizes="32x32">
 
@@ -16,10 +17,32 @@
 
 <body vlink="#ffffff"   > 
     <header>
-        <span class="loggo"><b>E-Commerce</b></span>        
-        <nav>                        
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Тип продукта</a>
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Продукт</a>            
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">E-Commerce</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Категория</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Товар</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
         </nav>
     </header>
     <main>
