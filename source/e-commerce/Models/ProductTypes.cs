@@ -3,7 +3,7 @@
 namespace e_commerce.Models
 {
     /// <summary>
-    /// Класс типа продукта.
+    /// Класс типа товара.
     /// </summary>
     public class ProductTypes
     {
@@ -16,7 +16,7 @@ namespace e_commerce.Models
         /// Тип продукта.
         /// </summary>
         [Required]
-        [Display(Name = "Тип продукта")]
+        [Display(Name = "Категория товара")]
         public string ProductType { get; set; }
     }
 }

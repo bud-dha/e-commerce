@@ -6,76 +6,80 @@
 }
 
 
-<br /><br />
+<br/>
 
-<div class="row">
+<div class="container">
 
-    <div class="col-6">
-        <h2 class="text-info">Список товаров</h2>
-    </div>
-    <div class="col-6 text-info-rigth">
-        <a asp-action="Create" class="btn btn-info">&nbsp; Добавить позицию</a>
-    </div>
+    <h2 class="text-dark text-center">Список товаров</h2> <br/>
 
-</div>
-
-@* Сортировка
-    <form method="post">
-        <div class="row">
-            <div class="col-3">
-                <input type="number" class="form-control" name="lowAmount" />
-            </div>
-            <div class="col-3">
-                <input type="number" class="form-control" name="largeAmount" />
-            </div>
-            <div class="col-3">
-                <input type="submit" value="Поиск" class="btn btn-success" />
-            </div>
-            <div class="col-3"></div>
+    <div class="row">
+        <div class="col-6">
+            <a asp-action="Create" class="btn btn-light btn-outline-secondary">&nbsp; Добавить позицию</a>
         </div>
-    </form>
-*@
+    </div> <br/>    
 
-<div>
+    @* Сортировка
+        <form method="post">
+            <div class="row">
+                <div class="col-3">
+                    <input type="number" class="form-control" name="lowAmount" />
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" name="largeAmount" />
+                </div>
+                <div class="col-3">
+                    <input type="submit" value="Поиск" class="btn btn-success" />
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </form>
+    *@
 
-    <table class="table table-striped border">
+    <div>
 
-        <tr class="table-info">
-            <th>
-                @Html.DisplayNameFor(expression: c => c.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(expression: c => c.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(expression: c => c.ProductColor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(expression: c => c.IsAvailable)
-            </th>
-            <th>
-                @Html.DisplayNameFor(expression: c => c.ProductTypeId)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
+        <table class="table table-striped border">
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Price</td>
-                <td>@item.ProductColor</td>
-                <td>@item.IsAvailable</td>
-                <td>@item.ProductTypes.ProductType</td>
-                <td>
-                    <a asp-action="Edit"    asp-controller="Product" class="btn btn-primary" asp-route-id="@item.Id">Редактировать</a>
-                    <a asp-action="Details" asp-controller="Product" class="btn btn-success" asp-route-id="@item.Id">Инфо.</a>
-                    <a asp-action="Delete"  asp-controller="Product" class="btn btn-danger"  asp-route-id="@item.Id">Удалить</a>
-                </td>
-            </tr>
-        }
+            <thead class="thead-dark">
 
-    </table>
+                <tr class="table">
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.ProductColor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.IsAvailable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.ProductTypeId)
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.ProductColor</td>
+                    <td>@item.IsAvailable</td>
+                    <td>@item.ProductTypes.ProductType</td>
+                    <td>
+                        <a asp-action="Edit"    asp-controller="Product" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Редактировать</a>
+                        <a asp-action="Details" asp-controller="Product" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Инфо.</a>
+                        <a asp-action="Delete"  asp-controller="Product" class="btn btn-light btn-outline-danger"    asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
 
 </div>

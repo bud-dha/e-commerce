@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace e_commerce.Models
 {
     /// <summary>
-    /// Класс продута.
+    /// Класс товара.
     /// </summary>
     public class Products
     {
@@ -30,7 +30,7 @@ namespace e_commerce.Models
         /// <summary>
         /// Фото продукта.
         /// </summary>
-        [Display(Name = "Картинка")]
+        [Display(Name = "Изображение")]
         public string Image { get; set; }
 
         /// <summary>
