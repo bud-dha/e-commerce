@@ -41,8 +41,7 @@ namespace e_commerce.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _db.ProductTypes.Add(productTypes);
-                await _db.SaveChangesAsync();
-                //TempData["save"] = "Тип продукта сохранен";
+                await _db.SaveChangesAsync();                
                 return RedirectToAction(nameof(Index));
             }
 
@@ -75,8 +74,7 @@ namespace e_commerce.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _db.Update(productTypes);
-                await _db.SaveChangesAsync();
-                //TempData["save"] = "Тип продукта был сохранен";
+                await _db.SaveChangesAsync();                
                 return RedirectToAction(nameof(Index));
             }
 

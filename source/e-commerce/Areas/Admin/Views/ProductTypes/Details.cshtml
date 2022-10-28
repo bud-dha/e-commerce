@@ -5,29 +5,33 @@
 
 <br />
 
-<h2 class="text-info">Информация о категории</h2>
+<div class="container">
 
-<form asp-action="Details" method="post">
+    <h2 class="text-center text-dark">Информация о категории</h2><br/>
 
-    <div class="p-4 rounded border">
+    <form asp-action="Details" method="post">
 
-        <div asp-validation-summary="ModelOnly" class="text-danger">
+        <div class="p-4 rounded border">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+
+            <div class="col-2">
+                <label asp-for="ProductType"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ProductType" readonly="readonly" class="form-control" />
+            </div>
+
+            <span asp-validation-for="ProductType" class="text-danger"></span>
+
+        </div><br/>
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-dark">Редактировать</a>
+            <a asp-action="Index" class="btn btn-outline-dark">Вернуться к списку</a>        
         </div>
 
-        <div class="col-2">
-            <label asp-for="ProductType"></label>
-        </div>
-        <div class="col-5">
-            <input asp-for="ProductType" readonly="readonly" class="form-control" />
-        </div>
+    </form>
 
-        <span asp-validation-for="ProductType" class="text-danger"></span>
-
-    </div>
-
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редактировать</a>
-        <a asp-action="Index" class="btn btn-success">Вернуться к списку</a>        
-    </div>
-
-</form>
+</div>

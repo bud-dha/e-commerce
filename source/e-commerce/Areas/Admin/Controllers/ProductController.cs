@@ -82,8 +82,7 @@ namespace e_commerce.Areas.Admin.Controllers
                     product.Image = "Images/noimage.png";               
 
                 _db.Products.Add(product);
-                await _db.SaveChangesAsync();
-                //TempData["save"] = "Продукт сохренен";
+                await _db.SaveChangesAsync();                
                 return RedirectToAction(nameof(Index));
             }
 
@@ -126,8 +125,7 @@ namespace e_commerce.Areas.Admin.Controllers
                     products.Image = "Images/noimage.png";                
 
                 _db.Products.Update(products);
-                await _db.SaveChangesAsync();
-                //TempData["save"] = "Продукт сохренен";
+                await _db.SaveChangesAsync();                
                 return RedirectToAction(nameof(Index));
             }
 
