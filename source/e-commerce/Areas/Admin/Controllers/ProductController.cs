@@ -73,13 +73,13 @@ namespace e_commerce.Areas.Admin.Controllers
             {
                 if (image != null)
                 {
-                    var name = Path.Combine(_he.WebRootPath + "Images", Path.GetFileName(image.FileName));
+                    var name = Path.Combine(_he.WebRootPath + "/Images/Custom/", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                    product.Image = "Images/" + image.FileName;
+                    product.Image = "/Images/Custom/" + image.FileName;                   
                 }
 
                 if (image == null)                
-                    product.Image = "Images/noimage.png";               
+                    product.Image = "Images/noimage.png";                      
 
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();                
@@ -110,26 +110,26 @@ namespace e_commerce.Areas.Admin.Controllers
         //Edit Post action Method
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit(Products products, IFormFile image)
+        public async Task<IActionResult> Edit(Products product, IFormFile image)
         {
             if (ModelState.IsValid)
             {
                 if (image != null)
                 {
-                    var name = Path.Combine(_he.WebRootPath + "Images", Path.GetFileName(image.FileName));
+                    var name = Path.Combine(_he.WebRootPath + "/Images/Custom/", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                    products.Image = "Images/" + image.FileName;
+                    product.Image = "/Images/Custom/" + image.FileName;
                 }
 
                 if (image == null)                
-                    products.Image = "Images/noimage.png";                
+                    product.Image = "Images/noimage.png";                
 
-                _db.Products.Update(products);
+                _db.Products.Update(product);
                 await _db.SaveChangesAsync();                
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(products);
+            return View(product);
         }
         #endregion
 
