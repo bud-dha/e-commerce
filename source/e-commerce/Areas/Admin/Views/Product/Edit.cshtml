@@ -64,7 +64,7 @@
                         <label asp-for="ProductTypeId"></label>
                     </div>
                     <div class="col-8">
-                        <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>                    
+                        <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>
                     </div>
                     <span asp-validation-for="ProductTypeId" class="text-danger"></span>
                 </div>
@@ -77,20 +77,20 @@
                         <input asp-for="IsAvailable" class="" type="checkbox" />
                     </div>
                     <span asp-validation-for="IsAvailable" class="text-danger"></span>
-                </div><br/>
-
-                <div class="form-group">
-                    <input type="submit" class="btn btn-outline-dark" value="Обновить" />
-                    <a asp-action="Index" class="btn btn-outline-dark">"Вернуться к списку"</a>
                 </div>
 
             </div>
 
             <div class="col-1"></div>
             <div class="col-3">
-                <img src="@Model.Image" width="100%" style="border-radius: 5px;border: 1px solid #efefef"/>
+                <img src="@Model.Image" width="100%" style="border-radius: 5px;border: 1px solid #efefef" />
             </div>
 
+        </div><br/>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-outline-dark" value="Обновить" />
+            <a asp-action="Index" class="btn btn-outline-dark">Вернуться к списку</a>
         </div>
 
     </form>

@@ -23,6 +23,20 @@ namespace e_commerce.Areas.Admin.Controllers
             return View(_db.ProductTypes.ToList());
         }
 
+        //POST Index action method
+        [HttpPost]
+        public IActionResult Index(string category)
+        {
+            var productTypes = _db.ProductTypes.Where(c => c.ProductType == category).ToList();
+
+            if (category == null)
+            {
+                productTypes = _db.ProductTypes.ToList();
+            }
+
+            return View(productTypes);
+        }
+
         #endregion
 
         #region Создание типа продукта.
@@ -79,32 +93,6 @@ namespace e_commerce.Areas.Admin.Controllers
             }
 
             return View(productTypes);
-        }
-
-        #endregion
-
-        #region Получение информации о типе продукта.
-
-        //Details Get action Method
-        public ActionResult Details(int? id)
-        {
-            var productType = _db.ProductTypes.Find(id);
-
-            if (id == null)            
-                return NotFound();                        
-
-            if (productType == null)            
-                return NotFound();      
-            
-            return View(productType);
-        }
-
-        //Details Post action Method
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult Details(ProductTypes productTypes)
-        {
-            return RedirectToAction(nameof(Index));
         }
 
         #endregion

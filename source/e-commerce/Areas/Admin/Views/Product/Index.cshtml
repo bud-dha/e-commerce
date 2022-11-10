@@ -10,30 +10,28 @@
 
 <div class="container">
 
-    <h2 class="text-dark text-center">Список товаров</h2> <br/>
-
     <div class="row">
         <div class="col-6">
-            <a asp-action="Create" class="btn btn-light btn-outline-dark">&nbsp; Добавить позицию</a>
+            <h2 class="text-dark">Список товаров</h2>
         </div>
-    </div> <br/>    
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-light btn-outline-dark">&nbsp;Добавить</a>
+        </div>
+    </div><br/>
 
-    @* Сортировка
-        <form method="post">
-            <div class="row">
-                <div class="col-3">
-                    <input type="number" class="form-control" name="lowAmount" />
-                </div>
-                <div class="col-3">
-                    <input type="number" class="form-control" name="largeAmount" />
-                </div>
-                <div class="col-3">
-                    <input type="submit" value="Поиск" class="btn btn-success" />
-                </div>
-                <div class="col-3"></div>
+    <form method="post">
+        <div class="row">
+            <div class="col-2">
+                <input type="number" min="0" class="form-control" name="lowAmount" formmethod="post" />
             </div>
-        </form>
-    *@
+            <div class="col-2">
+                <input type="number" min="0" class="form-control" name="largeAmount" formmethod="post" />
+            </div>
+            <div class="col-3">
+                <input type="submit" value="Поиск" class="btn btn-light btn-outline-dark"/>
+            </div>
+        </div>
+    </form><br />
 
     <div>
 
@@ -71,9 +69,8 @@
                     <td>@item.IsAvailable</td>
                     <td>@item.ProductTypes.ProductType</td>
                     <td>
-                        <a asp-action="Edit"    asp-controller="Product" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Редактировать</a>
-                        <a asp-action="Details" asp-controller="Product" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Инфо.</a>
-                        <a asp-action="Delete"  asp-controller="Product" class="btn btn-light btn-outline-danger"    asp-route-id="@item.Id">Удалить</a>
+                        <a asp-action="Edit"   asp-controller="Product" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Редактировать</a>                       
+                        <a asp-action="Delete" asp-controller="Product" class="btn btn-light btn-outline-danger"    asp-route-id="@item.Id">Удалить</a>
                     </td>
                 </tr>
             }

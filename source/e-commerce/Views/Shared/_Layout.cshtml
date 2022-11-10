@@ -43,11 +43,20 @@
 
                 </div>
 
+                @*Данные элементы должны отображаться только для незарегестрированных пользователей, или пользователей
+                  невошедших в учетку. При нажатии на кнопку войти будет переход на форму заполнения. При нажатии на
+                  кнопку регистрации, переход на форму регистрации соответственно.*@
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Логин">
-                    <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Войти</button>
-                    <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Регистрация</button>
-                </form>                             
+                    <input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Username" aria-label="Логин">
+                    <button class="btn btn-outline-light my-2 mr-sm-2 btn-sm" type="submit">Войти</button>
+                    <button class="btn btn-outline-light my-2 mr-sm-2 btn-sm" type="submit">Регистрация</button>
+                </form>
+
+                @* Данные элементы должны отображаться вошедшим пользователям.
+                <form class="form-inline my-2 my-lg-0">
+                    <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Выйти</button>
+                </form>
+                *@
 
             </div>
 

@@ -13,7 +13,7 @@ namespace e_commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductController : Controller
-    {       
+    {
         private ApplicationContext _db;
         private IWebHostEnvironment _he;
 
@@ -26,23 +26,23 @@ namespace e_commerce.Areas.Admin.Controllers
         #region Возврат
 
         public IActionResult Index()
-        {                      
-            return View(_db.Products.Include(c=>c.ProductTypes).ToList());
+        {
+            return View(_db.Products.Include(c => c.ProductTypes).ToList());
         }
 
-        /* Сортировка
         //POST Index action method
         [HttpPost]
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
         {
-            var products = _db.Products.Include(c => c.ProductTypes).Where(c => c.Price >= lowAmount && c.Price <= largeAmount).ToList();
-
-            if (lowAmount == null || largeAmount == null)            
-                products = _db.Products.Include(c => c.ProductTypes).ToList();            
+            var products = _db.Products.Include(c => c.ProductTypes).Where(c => c.Price >= lowAmount && c.Price <= largeAmount).OrderBy(c => c.Price).ToList();
+           
+            if (lowAmount == null || largeAmount == null)
+            {
+                products = _db.Products.Include(c => c.ProductTypes).ToList();
+            }
 
             return View(products);
         }
-        */
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace e_commerce.Areas.Admin.Controllers
                 }
 
                 if (image == null)                
-                    product.Image = "Images/noimage.png";                      
+                    product.Image = "/Images/noimage.png";                      
 
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();                
@@ -122,7 +122,7 @@ namespace e_commerce.Areas.Admin.Controllers
                 }
 
                 if (image == null)                
-                    product.Image = "Images/noimage.png";                
+                    product.Image = "/Images/noimage.png";                
 
                 _db.Products.Update(product);
                 await _db.SaveChangesAsync();                
@@ -131,24 +131,6 @@ namespace e_commerce.Areas.Admin.Controllers
 
             return View(product);
         }
-        #endregion
-
-        #region Получение информации о продукте.
-
-        //Details Get action Method
-        public ActionResult Details(int? id)
-        {
-            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
-
-            if (id == null)            
-                return NotFound();         
-            
-            if (product == null)            
-                return NotFound();            
-
-            return View(product);
-        }
-
         #endregion
 
         #region Удаление продукта.
