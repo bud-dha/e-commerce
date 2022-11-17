@@ -1,15 +1,12 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using e_commerce.Data;
 using e_commerce.Models;
+using e_commerce.Utility;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace e_Comerce.Controllers
@@ -40,7 +37,7 @@ namespace e_Comerce.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        #region Получение информации о типе продукта.
+        #region Получение информации о типе товара.
 
         //GET product detail action method
         public ActionResult Detail(int? id)
@@ -56,30 +53,85 @@ namespace e_Comerce.Controllers
             return View(product);
         }
 
-        /*
         //POST product detail acation method
         [HttpPost]
         [ActionName("Detail")]
         public ActionResult ProductDetail(int? id)
         {
             List<Products> products = new List<Products>();
-            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
-            products = HttpContext.Session.Get<List<Products>>("products");
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            if (id == null)            
-                return NotFound();            
-            
-            if (product == null)            
-                return NotFound();            
-            
-            if (products == null)            
-                products = new List<Products>();          
-                
+            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            products = HttpContext.Session.Get<List<Products>>("products");
+            if (products == null)
+            {
+                products = new List<Products>();
+            }
             products.Add(product);
             HttpContext.Session.Set("products", products);
             return RedirectToAction(nameof(Index));
         }
-        */
+
+        #endregion
+
+        #region Удаление товара из корзины.
+
+        //GET Remove action methdo
+        [ActionName("Remove")]
+        public IActionResult RemoveToCart(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                if (product != null)
+                {
+                    products.Remove(product);
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+
+        public IActionResult Remove(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                if (product != null)
+                {
+                    products.Remove(product);
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        #endregion
+
+        #region Получение корзины.
+
+        //GET product Cart action method
+        public IActionResult Cart()
+        {                        
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");            
+            if (products == null)
+            {
+                products = new List<Products>();
+            }
+            return View(products);
+        }
         #endregion
     }
 }

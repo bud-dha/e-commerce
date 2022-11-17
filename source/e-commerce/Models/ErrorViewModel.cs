@@ -1,4 +1,3 @@
-using System;
 
 namespace e_commerce.Models
 {

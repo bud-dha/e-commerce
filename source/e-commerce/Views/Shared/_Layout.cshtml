@@ -9,13 +9,14 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/Upload/feedback_style.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />  
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="icon" type="image/png" href="/Icons/favicon(16).ico" sizes="16x16">
-    <link rel="icon" type="image/png" href="/Icons/favicon(32).ico" sizes="32x32">
+    <link rel="icon" type="image/png" href="/Icons/favicon(32).ico" sizes="32x32">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 </head>
 
-<body vlink="#ffffff"   > 
+<body vlink="#ffffff">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
@@ -39,13 +40,21 @@
                             <a class="nav-link text-light" asp-area="Admin" asp-controller="Product" asp-action="Index">Товар</a>
                         </li>
 
+                        @*Данный элемент должен отображаться только вошедшим пользователям*@
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                                <i class="bi bi-cart-check" style="color: white"></i> Корзина
+                            </a>
+                        </li>
+
+
                     </ul>
 
                 </div>
 
                 @*Данные элементы должны отображаться только для незарегестрированных пользователей, или пользователей
-                  невошедших в учетку. При нажатии на кнопку войти будет переход на форму заполнения. При нажатии на
-                  кнопку регистрации, переход на форму регистрации соответственно.*@
+                    невошедших в учетку. При нажатии на кнопку войти будет переход на форму заполнения. При нажатии на
+                    кнопку регистрации, переход на форму регистрации соответственно.*@
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Username" aria-label="Логин">
                     <button class="btn btn-outline-light my-2 mr-sm-2 btn-sm" type="submit">Войти</button>
@@ -53,9 +62,9 @@
                 </form>
 
                 @* Данные элементы должны отображаться вошедшим пользователям.
-                <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Выйти</button>
-                </form>
+                    <form class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Выйти</button>
+                    </form>
                 *@
 
             </div>
@@ -63,6 +72,14 @@
         </nav>
 
     </header>
+
+    @* Footer веден себя странно, разобраться как сделать его адаптивным под контент.
+        <footer class="border-top footer text-muted text-center">
+            <div class="container">
+                &copy; 2022 - E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    *@
 
     <main>
         @RenderBody()
