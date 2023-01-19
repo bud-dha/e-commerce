@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using System.Net.Http
+@using e_commerce.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ 
+    int count = 0;
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+    if (products == null)
+    {
+        products = new List<Products>();
+    }
+    count = products.Count();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,6 +58,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Cart">
                                 <i class="bi bi-cart-check" style="color: white"></i> Корзина
+                                (@count)
                             </a>
                         </li>
 

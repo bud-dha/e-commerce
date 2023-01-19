@@ -30,8 +30,8 @@ namespace e_commerce.Models
         /// Номер телефона.
         /// </summary>
         [Required]
-        [Display(Name = "Phone No")]
-        public string PhoneNo { get; set; }
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Адрес электронной почты.

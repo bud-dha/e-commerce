@@ -75,8 +75,10 @@ namespace e_Comerce.Controllers
             {
                 products = new List<Products>();
             }
+
             products.Add(product);
             HttpContext.Session.Set("products", products);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -124,8 +126,8 @@ namespace e_Comerce.Controllers
 
         //GET product Cart action method
         public IActionResult Cart()
-        {                        
-            List<Products> products = HttpContext.Session.Get<List<Products>>("products");            
+        {            
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");                    
             if (products == null)
             {
                 products = new List<Products>();
