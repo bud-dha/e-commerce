@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace e_commerce.Utility
 {
@@ -14,8 +14,7 @@ namespace e_commerce.Utility
         {
             var value = session.GetString(key);
 
-            return value == null ? default(T) :
-                JsonConvert.DeserializeObject<T>(value);
+            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿using System.IO;
-using System.Linq;
-using e_commerce.Data;
+﻿using e_commerce.Data;
 using e_commerce.Models;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace e_commerce.Areas.Admin.Controllers
 {
@@ -35,7 +35,7 @@ namespace e_commerce.Areas.Admin.Controllers
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
         {
             var products = _db.Products.Include(c => c.ProductTypes).Where(c => c.Price >= lowAmount && c.Price <= largeAmount).OrderBy(c => c.Price).ToList();
-           
+
             if (lowAmount == null || largeAmount == null)
             {
                 products = _db.Products.Include(c => c.ProductTypes).ToList();
@@ -75,14 +75,14 @@ namespace e_commerce.Areas.Admin.Controllers
                 {
                     var name = Path.Combine(_he.WebRootPath + "/Images/Custom/", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                    product.Image = "/Images/Custom/" + image.FileName;                   
+                    product.Image = "/Images/Custom/" + image.FileName;
                 }
 
-                if (image == null)                
-                    product.Image = "/Images/noimage.png";                      
+                if (image == null)
+                    product.Image = "wwwroot/Images/noimage.png";
 
                 _db.Products.Add(product);
-                await _db.SaveChangesAsync();                
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
@@ -98,11 +98,11 @@ namespace e_commerce.Areas.Admin.Controllers
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
             var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
 
-            if (id == null)            
-                return NotFound();            
-            
-            if (product == null)            
-                return NotFound();            
+            if (id == null)
+                return NotFound();
+
+            if (product == null)
+                return NotFound();
 
             return View(product);
         }
@@ -121,11 +121,11 @@ namespace e_commerce.Areas.Admin.Controllers
                     product.Image = "/Images/Custom/" + image.FileName;
                 }
 
-                if (image == null)                
-                    product.Image = "/Images/noimage.png";                
+                if (image == null)
+                    product.Image = "/Images/noimage.png";
 
                 _db.Products.Update(product);
-                await _db.SaveChangesAsync();                
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
@@ -140,12 +140,12 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             var product = _db.Products.Include(c => c.ProductTypes).Where(c => c.Id == id).FirstOrDefault();
 
-            if (id == null)            
-                return NotFound();            
+            if (id == null)
+                return NotFound();
 
-            if (product == null)            
-                return NotFound();  
-            
+            if (product == null)
+                return NotFound();
+
             return View(product);
         }
 
@@ -156,11 +156,11 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             var product = _db.Products.FirstOrDefault(c => c.Id == id);
 
-            if (id == null)            
-                return NotFound();            
-            
-            if (product == null)            
-                return NotFound();            
+            if (id == null)
+                return NotFound();
+
+            if (product == null)
+                return NotFound();
 
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();

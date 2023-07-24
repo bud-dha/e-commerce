@@ -8,7 +8,7 @@ namespace e_commerce.Models
     /// Класс заказа.
     /// </summary>
     public class Order
-    {        
+    {
         /// <summary>
         /// Id заказа.
         /// </summary>

@@ -1,5 +1,4 @@
-﻿
-namespace e_commerce.Models
+﻿namespace e_commerce.Models
 {
     /// <summary>
     /// Класс сессии пользователя.

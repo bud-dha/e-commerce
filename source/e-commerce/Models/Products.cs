@@ -10,7 +10,7 @@ namespace e_commerce.Models
     {
         /// <summary>
         /// Id продукта.
-        /// </summary>       
+        /// </summary>
         public int Id { get; set; }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace e_commerce.Models
 
         /// <summary>
         /// Id типа продукта.
-        /// </summary>              
+        /// </summary>
         [Required]
         [Display(Name = "Тип продукта")]
         public int ProductTypeId { get; set; }
