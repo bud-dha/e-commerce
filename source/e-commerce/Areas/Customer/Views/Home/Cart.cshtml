@@ -1,0 +1,63 @@
+﻿@using e_commerce.Models
+@model List<Products>
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<br/>
+
+<div class="container">
+
+    <h1>Корзина</h1><br/>
+
+    <div class="row">
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Категория</th>
+                    <th>Цвет</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr>
+                        <td>
+                            <img src="~/@item.Image" width="200px" height="150px" />
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.ProductTypes.ProductType</td>
+                        <td>@item.ProductColor</td>
+                        <td>
+                            <a asp-area="Customer" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                                <i class="bi bi-trash3"></i>
+                            </a>
+                        </td>
+                    </tr>
+                 }
+            </tbody>
+
+        </table>
+    </div><br/>
+
+    <div class="row">
+
+        <div class="col-6">            
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-dark">На главную</a>
+        </div>
+
+        <div class="col-6 text-right">        
+            <h3>Итог : @Model.Sum(c => c.Price) </h3>
+            <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="btn btn-outline-success">Оформить</a>
+        </div>
+
+    </div>
+
+</div>

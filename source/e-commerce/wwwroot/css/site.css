@@ -1,43 +1,65 @@
 ﻿
-* {
-    margin: 0;
-    padding: 0;
-    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
-a {
-    text-decoration: none;
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-    font-family: 'Rubik', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    background: #fff;
-    color: #000000;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
-header {
-    width: 80%;
-    padding: 20px 10%;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #008B8B;    
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
 }
 
-    header.logo {
-        font-weight: 900;                
-    }
-
-    header nav a:hover {
-        text-decoration: none;
-    }
-
-main {
-    width: 80%;
-    padding: 15px 10%;
-    margin: 50px 0;
+.table td {
+    text-align: center;
 }
 
+.table thead {
+    text-align: center;
+}

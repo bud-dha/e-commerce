@@ -1,0 +1,82 @@
+﻿@using e_commerce.Models;
+@model IEnumerable<Products>
+
+@{
+    ViewData["Title"] = "Товары";
+}
+
+
+<br/>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-dark">Список товаров</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-light btn-outline-dark">&nbsp;Добавить</a>
+        </div>
+    </div><br/>
+
+    <form method="post">
+        <div class="row">
+            <div class="col-2">
+                <input type="number" min="0" class="form-control" name="lowAmount" formmethod="post" />
+            </div>
+            <div class="col-2">
+                <input type="number" min="0" class="form-control" name="largeAmount" formmethod="post" />
+            </div>
+            <div class="col-3">
+                <input type="submit" value="Поиск" class="btn btn-light btn-outline-dark"/>
+            </div>
+        </div>
+    </form><br />
+
+    <div>
+
+        <table class="table table-striped border">
+
+            <thead class="thead-dark">
+
+                <tr class="table">
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.ProductColor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.IsAvailable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.ProductTypeId)
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.ProductColor</td>
+                    <td>@item.IsAvailable</td>
+                    <td>@item.ProductTypes.ProductType</td>
+                    <td>
+                        <a asp-action="Edit"   asp-controller="Product" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Редактировать</a>                       
+                        <a asp-action="Delete" asp-controller="Product" class="btn btn-light btn-outline-danger"    asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</div>

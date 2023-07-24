@@ -1,26 +1,105 @@
-﻿<!DOCTYPE html>
+﻿@using System.Net.Http
+@using e_commerce.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ 
+    int count = 0;
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+    if (products == null)
+    {
+        products = new List<Products>();
+    }
+    count = products.Count();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel=" icon" href="~/Icons">
+    <link rel="stylesheet" href="~/Upload/feedback_style.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="icon" type="image/png" href="/Icons/favicon(16).ico" sizes="16x16">
+    <link rel="icon" type="image/png" href="/Icons/favicon(32).ico" sizes="32x32">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
 </head>
 
-<body vlink="#ffffff"   > 
+<body vlink="#ffffff">
     <header>
-        <span class="loggo"><b>E-Commerce</b></span>        
-        <nav>
-            <a href="/">Главная</a>
-            <a href="/Home/List">Каталог</a>
-            <a href="/Home/Feedback">Обратная связь</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <div class="container">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">E-Commerce</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Категория</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Product" asp-action="Index">Товар</a>
+                        </li>
+
+                        @*Данный элемент должен отображаться только вошедшим пользователям*@
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                                <i class="bi bi-cart-check" style="color: white"></i> Корзина
+                                (@count)
+                            </a>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+                @*Данные элементы должны отображаться только для незарегестрированных пользователей, или пользователей
+                    невошедших в учетку. При нажатии на кнопку войти будет переход на форму заполнения. При нажатии на
+                    кнопку регистрации, переход на форму регистрации соответственно.*@
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Username" aria-label="Логин">
+                    <button class="btn btn-outline-light my-2 mr-sm-2 btn-sm" type="submit">Войти</button>
+                    <button class="btn btn-outline-light my-2 mr-sm-2 btn-sm" type="submit">Регистрация</button>
+                </form>
+
+                @* Данные элементы должны отображаться вошедшим пользователям.
+                    <form class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Выйти</button>
+                    </form>
+                *@
+
+            </div>
+
         </nav>
+
     </header>
+
+    @* Cделать его адаптивным под контент.
+        <footer class="border-top footer text-muted text-center">
+            <div class="container">
+                &copy; 2022 - E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    *@
+
     <main>
         @RenderBody()
     </main>
+
 </body>
 
 </html>

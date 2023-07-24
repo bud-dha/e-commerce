@@ -1,0 +1,62 @@
+﻿@using e_commerce.Models;
+@model IEnumerable<ProductTypes>
+
+@{
+    ViewData["Title"] = "Категория";
+}
+
+
+<br/>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-dark">Список категорий</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-light btn-outline-dark">&nbsp;Добавить</a>
+        </div>
+    </div><br />
+
+    <form method="post">
+        <div class="row">
+            <div class="col-3">
+                <input type="search" class="form-control" name="category" formmethod="post" />
+            </div>
+            <div class="col-3">
+                <input type="submit" value="Поиск" class="btn btn-light btn-outline-dark" />
+            </div>
+        </div>
+    </form><br />
+
+    <div>
+
+        <table class="table table-striped border">
+
+            <thead class="thead-dark">
+
+                <tr class="table">
+                    <th>
+                        @Html.DisplayNameFor(expression: c => c.ProductType)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductType</td>
+                    <td>
+                        <a asp-action="Edit"   asp-controller="ProductTypes" class="btn btn-light btn-outline-secondary" asp-route-id="@item.Id">Редактировать</a>                        
+                        <a asp-action="Delete" asp-controller="ProductTypes" class="btn btn-light btn-outline-danger"    asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</div>
