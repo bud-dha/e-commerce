@@ -1,5 +1,4 @@
-﻿
-namespace e_commerce.Areas.Admin.Models
+﻿namespace e_commerce.Areas.Admin.Models
 {
     public class UserRoleMaping
     {

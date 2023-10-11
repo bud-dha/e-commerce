@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using e_commerce.Data;
+﻿using e_commerce.Data;
 using e_commerce.Models;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace e_commerce.Areas.Customer.Controllers
 {

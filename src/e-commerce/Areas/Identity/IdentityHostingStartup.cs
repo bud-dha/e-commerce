@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 
 [assembly: HostingStartup(typeof(e_commerce.Areas.Identity.IdentityHostingStartup))]
 namespace e_commerce.Areas.Identity
@@ -8,8 +7,7 @@ namespace e_commerce.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-            });
+            builder.ConfigureServices((context, services) => { });
         }
     }
 }

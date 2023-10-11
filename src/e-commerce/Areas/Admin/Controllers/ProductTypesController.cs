@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using e_commerce.Data;
+﻿using e_commerce.Data;
 using e_commerce.Models;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace e_commerce.Areas.Admin.Controllers
 {
@@ -55,7 +55,7 @@ namespace e_commerce.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _db.ProductTypes.Add(productTypes);
-                await _db.SaveChangesAsync();                
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
@@ -71,11 +71,11 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             var productType = _db.ProductTypes.Find(id);
 
-            if (id==null)            
-                return NotFound();                  
+            if (id == null)
+                return NotFound();
 
-            if (productType==null)            
-                return NotFound();            
+            if (productType == null)
+                return NotFound();
 
             return View(productType);
         }
@@ -88,7 +88,7 @@ namespace e_commerce.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _db.Update(productTypes);
-                await _db.SaveChangesAsync();                
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
@@ -104,12 +104,12 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             var productType = _db.ProductTypes.Find(id);
 
-            if (id == null)            
-                return NotFound();                        
+            if (id == null)
+                return NotFound();
 
-            if (productType == null)            
-                return NotFound();     
-            
+            if (productType == null)
+                return NotFound();
+
             return View(productType);
         }
 
@@ -120,19 +120,19 @@ namespace e_commerce.Areas.Admin.Controllers
         {
             var productType = _db.ProductTypes.Find(id);
 
-            if (id == null)           
+            if (id == null)
                 return NotFound();
 
             if (id != productTypes.Id)
-                return NotFound();    
-            
+                return NotFound();
+
             if (productType == null)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
                 _db.ProductTypes.Remove(productType);
-                await _db.SaveChangesAsync();                
+                await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 

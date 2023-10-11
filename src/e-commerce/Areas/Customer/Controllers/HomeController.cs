@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using e_commerce.Data;
+﻿using e_commerce.Data;
 using e_commerce.Models;
 using e_commerce.Utility;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 
 namespace e_Comerce.Controllers
@@ -21,9 +21,9 @@ namespace e_Comerce.Controllers
             _db = db;
         }
 
-        public ActionResult Index() 
+        public ActionResult Index()
         {
-            return View(_db.Products.Include(c=>c.ProductTypes).ToList());
+            return View(_db.Products.Include(c => c.ProductTypes).ToList());
         }
 
         public IActionResult Privacy()
@@ -44,12 +44,12 @@ namespace e_Comerce.Controllers
         {
             var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
 
-            if (id == null)            
-                return NotFound();            
+            if (id == null)
+                return NotFound();
 
-            if (product == null)            
-                return NotFound();   
-            
+            if (product == null)
+                return NotFound();
+
             return View(product);
         }
 
@@ -126,8 +126,8 @@ namespace e_Comerce.Controllers
 
         //GET product Cart action method
         public IActionResult Cart()
-        {            
-            List<Products> products = HttpContext.Session.Get<List<Products>>("products");                    
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
             if (products == null)
             {
                 products = new List<Products>();
